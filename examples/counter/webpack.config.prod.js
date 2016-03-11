@@ -11,25 +11,29 @@ module.exports = [
   {
     // The configuration for the client
     name: "browser",
-    devtool: 'cheap-module-eval-source-map',
+    //devtool: 'cheap-module-eval-source-map',
     entry: {
 
-       index: [
-          'webpack-hot-middleware/client',
-          './index'
-       ],
+      index: [
+        './index'
+      ],
 
     },
 
     output: {
-      path: path.join(__dirname, 'static'),
-      filename: 'bundle.js',
-      publicPath: 'static/'
+      path: path.join(__dirname, 'dist'),
+      filename: '[name].bundle.js',
+      publicPath: 'dist/'
     },
     plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
+
+      function(compiler) {
+        this.plugin("done", function(stats) {
+          require("fs").writeFileSync(path.join(__dirname, "stats.generated.json"), JSON.stringify(stats.toJson()));
+        });
+      }
+
     ],
     module: {
       loaders: commonLoaders.concat([
@@ -58,17 +62,16 @@ module.exports = [
     entry: {
 
       page: [
-        'webpack-hot-middleware/client',
         "./page"
       ],
 
     },
     target: "node",
     output: {
-      path: path.join(__dirname, 'static'),
+      path: path.join(__dirname, 'dist'),
       //filename: "../../server/page.generated.js",
       filename: "../[name].generated.js",
-      publicPath: 'static/',
+      publicPath: 'dist/',
       libraryTarget: "commonjs2"
     },
     externals: /^[a-z\-0-9]+$/,

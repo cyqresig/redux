@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
+import imageJPG from '../image.jpg'
+
 class Counter extends Component {
   constructor(props) {
     super(props)
@@ -21,6 +23,7 @@ class Counter extends Component {
     const { value, onIncrement, onDecrement } = this.props
     return (
       <p>
+        <img src={imageJPG} alt="这是image"/>
         Clicked: {value} times
         {' '}
         <button onClick={onIncrement}>
