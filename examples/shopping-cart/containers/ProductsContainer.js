@@ -7,6 +7,7 @@ import ProductsList from '../components/ProductsList'
 
 class ProductsContainer extends Component {
   render() {
+    console.log('ProductsContainer render');
     const { products } = this.props
     return (
       <ProductsList title="Products">

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 export default class ProductsList extends Component {
   render() {
+    console.log('ProductsList render');
     return (
       <div>
         <h3>{this.props.title}</h3>

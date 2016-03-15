@@ -48,3 +48,12 @@ export function checkout(products) {
     })
   }
 }
+
+
+
+export function displayUser(text) {
+  return {
+    type: types.DISPLAY_USER,
+    text
+  }
+}

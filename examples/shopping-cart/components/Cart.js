@@ -3,6 +3,7 @@ import Product from './Product'
 
 export default class Cart extends Component {
   render() {
+    console.log('Cart render');
     const { products, total, onCheckoutClicked } = this.props
 
     const hasProducts = products.length > 0
